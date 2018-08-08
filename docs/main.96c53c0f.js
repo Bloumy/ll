@@ -104,10 +104,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"js/main.js":[function(require,module,exports) {
-
 $('.grid-list').materialGrid({
   debug: false,
-  maxcolumns: 5,
+  maxcolumns: 4,
   sorting: 'monodirectional'
 });
 
@@ -143,7 +142,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60223' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60742' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
