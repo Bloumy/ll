@@ -1,7 +1,6 @@
-
 $('.grid-list').materialGrid({
   debug: false,
-  maxcolumns: 5,
+  maxcolumns: 4,
   sorting: 'monodirectional'
 });
 
