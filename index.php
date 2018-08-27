@@ -9,16 +9,16 @@
     <link type="text/css" rel="stylesheet" href="css/main.css" />
 </head>
 <body>
-    
-    <?php 
+
+    <?php
     $currentPage = "score";
-    include_once './menu.php'; 
+    include_once './menu.php';
     ?>
 
     <div class="container">
         <div class="grid-list">
             <?php
-            $imageRepertoryPath = "data/";
+            $imageRepertoryPath = "data/captures/";
             $images = scandir($imageRepertoryPath);
 
             /**
@@ -54,10 +54,10 @@
              * @param string $imagePath - path of image 
              * @return string $title - Title of image
              */
-            function getHtmlForImage($imagePath, $title) {
+            function getHtmlForImage($imagePath, $title, $id) {
                 $html = '<div class="grid-cell">';
                 $html .= '<div class="grid-tile">';
-                $html .= '<img class="responsive-img z-depth-3 materialboxed" data-caption="' . $title . '" src="' . $imagePath . '" alt="' . $title . '" />';
+                $html .= '<img id="' . $id . '" class="responsive-img z-depth-3 materialboxed" data-caption="' . $title . '" src="' . $imagePath . '" alt="' . $title . '" />';
 
                 $html .= '</div>';
                 $html .= '</div>';
@@ -70,11 +70,13 @@
                 if ($image == "." || $image == "..") {
                     continue;
                 }
-                echo getHtmlForImage($imageRepertoryPath . $image, getSeasonTitle($image));
+                echo getHtmlForImage($imageRepertoryPath . $image, getSeasonTitle($image), getSeasonNumber($image));
             }
             ?>
 
         </div>
+
+        <!--<canvas id="viewport"></canvas>-->
 
     </div>
     <script type="text/javascript" src="node_modules/hammerjs/hammer.js"></script>
@@ -82,5 +84,6 @@
     <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script type="text/javascript" src="node_modules/materialize-grid-list/js/materialize-grid-list.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+   
 </body>
 </html>

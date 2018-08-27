@@ -2,3 +2,12 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
+select{
+    display: block;
+    width: auto;
+}
+
+.img-rescale{
+    width:100%;
+}
