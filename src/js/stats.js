@@ -79,7 +79,7 @@ function onSheetChangeHandler() {
     if ($selectSheet.val() !== null) {
         showSheet($selectSheet.val(), $sheetDiv);
         var saisonId = $selectSheet.val().replace('.jpg', '').replace('season_', '');
-        showWinner(saisonId, $scoreDiv);
+        showWinner(saisonId, $winnerDiv);
         showScores(saisonId, $scoreDiv);
     }
 }

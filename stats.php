@@ -104,8 +104,9 @@
 
         </div>
         <hr>
-        <div id="winner" class="col s12">
-        <div id="scores" class="col s12">
+        <div id="winner" class="col s12"></div>
+        <div id="scores" class="col s12"></div>
+
 <!--            <h1>Season XX</h1>
             
             TODO : Choice pertinent stats<br>
@@ -117,7 +118,6 @@
                 <li>The most with Zeros: 3eme laron</li>
                 <li>etc.</li>
             </ul>-->
-        </div>
 
     </div>
 
