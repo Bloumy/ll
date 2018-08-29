@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <head>
-    <title>Love Letter Archives</title>
+    <title>Love Letter Archives - Overview</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css" />
-    <link type="text/css" rel="stylesheet" href="node_modules/materialize-grid-list/css/materialize-grid-list.css" />
-    <link type="text/css" rel="stylesheet" href="css/main.css" />
+
+    <?php include_once './src/php/stylesheets_part.php'; ?>
 </head>
 <body>
 
     <?php
     $currentPage = "score";
-    include_once './menu.php';
+    include_once './src/php/menu_part.php';
     ?>
 
     <div class="container">
@@ -75,15 +73,9 @@
             ?>
 
         </div>
-
-        <!--<canvas id="viewport"></canvas>-->
-
     </div>
-    <script type="text/javascript" src="node_modules/hammerjs/hammer.js"></script>
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script type="text/javascript" src="node_modules/materialize-grid-list/js/materialize-grid-list.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-   
+
+    <?php include_once './src/php/javascripts_part.php'; ?>
+
 </body>
 </html>
