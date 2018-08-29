@@ -104,6 +104,7 @@
 
         </div>
         <hr>
+        <div id="winner" class="col s12">
         <div id="scores" class="col s12">
 <!--            <h1>Season XX</h1>
             

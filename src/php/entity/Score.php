@@ -1,6 +1,12 @@
 <?php
-
 namespace LoveLetter\Entity;
+
+include_once '../entity/Player.php';
+use LoveLetter\Entity\Player;
+
+include_once '../entity/Game.php';
+use LoveLetter\Entity\Game;
+
 
 class Score {
 
@@ -37,7 +43,7 @@ class Score {
         return $this->game;
     }
 
-    function getPlayer(): Player {
+    function getPlayer() {
         return $this->player;
     }
 
@@ -62,7 +68,6 @@ class Score {
     }
 
     public function toArray() {
-
 
         return array(
             'season' => $this->getSeason(),

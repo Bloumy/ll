@@ -6,6 +6,9 @@ include_once '../entity/Game.php';
 use LoveLetter\Entity\Game;
 
 
+include_once '../repository/PlayerRepository.php';
+use LoveLetter\Repository\PlayerRepository;
+
 include_once '../repository/SeasonRepository.php';
 use LoveLetter\Repository\SeasonRepository;
 
@@ -18,6 +21,7 @@ class GameRepository {
 
         $csvReader = new CSVReader();
         $seasonRepository = new SeasonRepository();
+        $playerRepository = new PlayerRepository();
         
 
         $gamesCsv = $csvReader->read('../../../data/games.csv');
@@ -31,9 +35,18 @@ class GameRepository {
             $game->setId($gameCsv['id']);
 
             $season = $seasonRepository->getSeasonById($gameCsv['season']);
+
             $game->setSeason($season);
 
-            $game->setPlayers($gameCsv['players']);
+            $players = array();
+            foreach(explode(",",$gameCsv['players']) as $playerId){
+
+                $player = $playerRepository->getPlayerById($playerId);
+
+                $players[]= $player;
+            }
+
+            $game->setPlayers($players);
 
             $this->games[] = $game;
         }
@@ -48,6 +61,17 @@ class GameRepository {
             }
         }
         return $games;
+        
+    }
+    
+    public function getGameById($id) {
+      
+        foreach ($this->games as $game) {
+            if ($game->getId() == $id) {
+             return $game;
+            }
+        }
+        return null;
     }
 
 }

@@ -18,13 +18,11 @@ class PlayerRepository {
 
     public function __construct() {
 
-
         $csvReader = new CSVReader();
         
-        $this->players = [];
-
         $playersCsv = $csvReader->read('../../../data/players.csv');
 
+        $this->players = [];
         foreach ($playersCsv as $playerCsv) {
 
             $player = new Player();

@@ -8,7 +8,7 @@ var columnNumber = 15;
 
 
 var $sheetDiv = $('#sheet-div');
-
+var $winnerDiv = $('#winner');
 var $scoreDiv = $('#scores');
 
 var $selectSheet = $('#select-sheet');
@@ -26,11 +26,12 @@ function showSheet(name, $target) {
 
 }
 
-function showScore(seasonId, $target) {
+function showWinner(seasonId, $target) {
 
-    var url = "./src/php/api/score_ajax.php";
+    var url = "./src/php/api/getSeason.php";
     var data = {
-        seasonId: seasonId
+        searchBy: "id",
+        value: seasonId
     };
     $.post(
             url,
@@ -52,12 +53,34 @@ function showScore(seasonId, $target) {
     );
 }
 
+function showScores(seasonId, $target) {
+
+    var url = "./src/php/api/getScores.php";
+    var data = {
+        searchBy: "seasonId", 
+        value: seasonId
+    };
+    $.post(
+            url,
+            data,
+            function (scores) {
+                $target.html('');
+                
+                for(var key in scores){
+                    console.log(scores[key].player.id + ' : ' + scores[key].points + ' ( season '+ scores[key].season + ', game n°'+scores[key].game.id + ' )');
+                }
+            }
+    );
+}
+
 
 function onSheetChangeHandler() {
 
     if ($selectSheet.val() !== null) {
         showSheet($selectSheet.val(), $sheetDiv);
-        showScore($selectSheet.val().replace('.jpg', '').replace('season_', ''), $scoreDiv);
+        var saisonId = $selectSheet.val().replace('.jpg', '').replace('season_', '');
+        showWinner(saisonId, $scoreDiv);
+        showScores(saisonId, $scoreDiv);
     }
 }
 
