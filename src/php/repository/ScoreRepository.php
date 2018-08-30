@@ -46,7 +46,6 @@ class ScoreRepository {
             $score->setGame($game);
 
             $score->setPoints($scoreCsv['points']);
-
             $this->scores[] = $score;
         }
     }
@@ -73,5 +72,5 @@ class ScoreRepository {
 
         return $scores;
     }
-
+   
 }

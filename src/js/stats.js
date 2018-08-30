@@ -46,29 +46,71 @@ function showWinner(seasonId, $target) {
                     if (!e.winner) {
                         $('<p>No winner found for this season, populate csv data !</p>').appendTo($target);
                     } else {
-                        $('<p>The winner is ' + e.winner.id+'</p>').appendTo($target);
+                        $('<p>The winner is ' + e.winner.id + '</p>').appendTo($target);
                     }
                 }
             }
     );
 }
 
+
+
+
+function buildScoresView(response, $target) {
+    var nbGames = 0;
+    
+    for (var key in response.scores) {
+        if (nbGames < parseInt(response.scores[key]['game'])) {
+            nbGames = parseInt(response.scores[key]['game']);
+        }
+    }
+
+
+    $target.append('<p>' + nbGames + ' parties</p>');
+    $target.append('<p>Total de victoires :</p>');
+
+    
+    var $table = $('<table></table>').appendTo($target);
+    var $thead = $('<thead></thead>').appendTo($table);
+    var $trPlayers = $('<tr></tr>').appendTo($thead);
+    var $tbody = $('<tbody></tbody>').appendTo($table);
+    var $trPointsTotal = $('<tr></tr>').appendTo($tbody);
+
+    for (var key in response.total) {
+        $trPlayers.append('<th>' + key + '</th>');
+        $trPointsTotal.append('<td>' + response.total[key] + '</td>');
+    }
+
+    
+    $target.append('<p>Total de bulles :</p>');
+    
+    var $table = $('<table></table>').appendTo($target);
+    var $thead = $('<thead></thead>').appendTo($table);
+    var $trPlayers = $('<tr></tr>').appendTo($thead);
+    var $tbody = $('<tbody></tbody>').appendTo($table);
+    var $trPointsTotal = $('<tr></tr>').appendTo($tbody);
+
+    for (var key in response.bulles) {
+        $trPlayers.append('<th>' + key + '</th>');
+        $trPointsTotal.append('<td>' + response.bulles[key] + '</td>');
+    }
+    
+    
+}
+
 function showScores(seasonId, $target) {
 
     var url = "./src/php/api/getScores.php";
     var data = {
-        searchBy: "seasonId", 
+        searchBy: "seasonId",
         value: seasonId
     };
     $.post(
             url,
             data,
-            function (scores) {
+            function (response) {
                 $target.html('');
-                
-                for(var key in scores){
-                    console.log(scores[key].player.id + ' : ' + scores[key].points + ' ( season '+ scores[key].season + ', game n°'+scores[key].game.id + ' )');
-                }
+                buildScoresView(response, $target);
             }
     );
 }
